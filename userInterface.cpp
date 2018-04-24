@@ -81,7 +81,25 @@ void UserInterface::writeMatrix()
 void UserInterface::saveGraph()
 {
     std::fstream save;
-    save.open( "graph.g", std::ios::out, | std::ios::binary);
+    save.open( "graph.g", std::ios::out | std::ios::binary);
+    if( !save.good() ){
+        std::cout << "Nie udalo sie zapisac!" << std::flush;
+        Sleep( 1500 );
+        system( "clear || cls" );
+        return;
+    }
+    int n = m_graph.getSize();
+    save << n << std::endl;
+    for( int i = 0; i < n; i++ ){
+        for( int j = 0; j < n; j++ ){
+            save << m_graph.getEdge( i, j ) << " ";
+        }
+        save << std::endl;
+    }
+    for( int i = 0; i < n; i++ ){
+        save << m_graph.getValue( i ) << std::endl;
+    }
+    save.close();
 }
 
 void UserInterface::loadGraph()
@@ -90,7 +108,7 @@ void UserInterface::loadGraph()
     load.open( "graph.g", std::ios::in | std::ios::binary );
     if( !load.good() ){
         std::cout << "Nie znaleziono zapisanego grafu!" << std::flush;
-        Sleep( 2000 );
+        Sleep( 1500 );
         system( "clear || cls" );
         return;
     }

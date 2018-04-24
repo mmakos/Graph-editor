@@ -28,6 +28,10 @@ public:
     {
         return m_adjacencyMatrix[ i ][ j ];
     }
+    const T getValue( int i )
+    {
+        return m_graphValues[ i ];
+    }
     void setValue( const T &object, int i )       //Szablon
     {
         m_graphValues[ i ] = object;
