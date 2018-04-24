@@ -24,8 +24,16 @@ void UserInterface::addEdge()
     unsigned int i = 0, j = 0;
     std::cout << "Od ktorego wierzcholka chcesz poprowadzic krawedz: ";
     std::cin >> i;
+    if( !std::cin.good() ){
+        std::cin.clear();
+        std::cin.ignore( 100, '\n' );
+    }
     std::cout << "Do którego wierzcholka chcesz poprowadzic krawedz: ";
     std::cin >> j;
+    if( !std::cin.good() ){
+        std::cin.clear();
+        std::cin.ignore( 100, '\n' );
+    }
     if( i > m_graph.getSize() || j > m_graph.getSize() ){
         std::cout << "Nie ma takiego wierzcholka!";
         Sleep( 2000 );
@@ -41,8 +49,16 @@ void UserInterface::delEdge()
     unsigned int i = 0, j = 0;
     std::cout << "Od ktorego wierzcholka chcesz usunac krawedz: ";
     std::cin >> i;
+    if( !std::cin.good() ){
+        std::cin.clear();
+        std::cin.ignore( 100, '\n' );
+    }
     std::cout << "Do którego wierzcholka chcesz usunac krawedz: ";
     std::cin >> j;
+    if( !std::cin.good() ){
+        std::cin.clear();
+        std::cin.ignore( 100, '\n' );
+    }
     if( i > m_graph.getSize() || j > m_graph.getSize() ){
         std::cout << "Nie ma takiego wierzcholka!";
         Sleep( 2000 );
@@ -58,6 +74,10 @@ void UserInterface::searchGraph()
     unsigned int startVertex;
     std::cout << "Od ktorego wierzcholka chcesz przeszukac graf: ";
     std::cin >> startVertex;
+    if( !std::cin.good() ){
+        std::cin.clear();
+        std::cin.ignore( 100, '\n' );
+    }
     if( startVertex > m_graph.getSize() ){
         std::cout << "Nie ma takiego wierzcholka!" << std::flush;
         Sleep( 2000 );
@@ -146,6 +166,10 @@ bool UserInterface::userMenu()
     std::cout << "7. Wypisz macierz sasiedztwa" << std::endl;
     std::cout << "8. Zamknij program" << std::endl;
     std::cin >> actionNumber;
+    if( !std::cin.good() ){
+        std::cin.clear();
+        std::cin.ignore( 100, '\n' );
+    }
     if( actionNumber < 1 || actionNumber > 8 ){
         std::cout << "Zly numer!" << std::flush;
         Sleep( 2000 );
