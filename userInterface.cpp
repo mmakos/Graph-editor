@@ -81,7 +81,7 @@ void UserInterface::writeMatrix()
 void UserInterface::saveGraph()
 {
     std::fstream save;
-    save.open( "graph.g", std::ios::out | std::ios::binary);
+    save.open( "graph.g", std::ios::out | std::ios::binary );
     if( !save.good() ){
         std::cout << "Nie udalo sie zapisac!" << std::flush;
         Sleep( 1500 );
@@ -167,6 +167,7 @@ bool UserInterface::userMenu()
         searchGraph();
         break;
     case 5:
+        saveGraph();
         break;
     case 6:
         loadGraph();
