@@ -14,7 +14,7 @@ void UserInterface::addVertex()
     std::cout << "Podaj nazwe: ";
     std::cin >> name;
     m_graph.newVertex( name );
-    std::cout << "Dodano wierzcho³ek" << std::flush;
+    std::cout << "Dodano wierzcholek" << std::flush;
     Sleep( 1500 );
     system( "clear || cls" );
 }
@@ -97,7 +97,7 @@ void UserInterface::saveGraph()
         save << std::endl;
     }
     for( int i = 0; i < n; i++ ){
-        save << m_graph.getValue( i ) << std::endl;
+        save << m_graph.getValue( i );
     }
     save.close();
 }
