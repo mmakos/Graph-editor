@@ -97,7 +97,7 @@ void UserInterface::saveGraph()
         save << std::endl;
     }
     for( int i = 0; i < n; i++ ){
-        save << m_graph.getValue( i );
+        save << m_graph.getValue( i ) << std::endl;
     }
     save.close();
 }
