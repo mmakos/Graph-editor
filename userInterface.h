@@ -10,7 +10,7 @@ public:
     void delEdge();
     void searchGraph();
     void writeMatrix();
-    void saveGraph();
-    void loadGraph();
+    void saveGraph( std::string );
+    void loadGraph( std::string );
     bool userMenu();
 };
