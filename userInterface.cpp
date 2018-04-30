@@ -28,7 +28,7 @@ void UserInterface::addEdge()
         std::cin.clear();
         std::cin.ignore( 100, '\n' );
     }
-    std::cout << "Do którego wierzcholka chcesz poprowadzic krawedz: ";
+    std::cout << "Do ktÃ³rego wierzcholka chcesz poprowadzic krawedz: ";
     std::cin >> j;
     if( !std::cin.good() ){
         std::cin.clear();
@@ -53,7 +53,7 @@ void UserInterface::delEdge()
         std::cin.clear();
         std::cin.ignore( 100, '\n' );
     }
-    std::cout << "Do którego wierzcholka chcesz usunac krawedz: ";
+    std::cout << "Do ktÃ³rego wierzcholka chcesz usunac krawedz: ";
     std::cin >> j;
     if( !std::cin.good() ){
         std::cin.clear();
@@ -84,7 +84,10 @@ void UserInterface::searchGraph()
         system( "clear || cls" );
         return;
     }
-    m_graph.BFS( startVertex );
+    std::vector< std::string > test = m_graph.BFS( startVertex );
+    for( unsigned int i = 0; i < test.size(); i++ )
+        std::cout << test[ i ] << std::endl;
+    std::cout << std::endl;
 }
 
 void UserInterface::writeMatrix()
@@ -98,10 +101,10 @@ void UserInterface::writeMatrix()
     std::cout << std::endl;
 }
 
-void UserInterface::saveGraph()
+void UserInterface::saveGraph( std::string name )
 {
     std::fstream save;
-    save.open( "graph.g", std::ios::out | std::ios::binary );
+    save.open( name.c_str(), std::ios::out | std::ios::binary );
     if( !save.good() ){
         std::cout << "Nie udalo sie zapisac!" << std::flush;
         Sleep( 1500 );
@@ -122,10 +125,10 @@ void UserInterface::saveGraph()
     save.close();
 }
 
-void UserInterface::loadGraph()
+void UserInterface::loadGraph( std:: string name )
 {
     std::fstream load;
-    load.open( "graph.g", std::ios::in | std::ios::binary );
+    load.open( name.c_str(), std::ios::in | std::ios::binary );
     if( !load.good() ){
         std::cout << "Nie znaleziono zapisanego grafu!" << std::flush;
         Sleep( 1500 );
@@ -191,10 +194,10 @@ bool UserInterface::userMenu()
         searchGraph();
         break;
     case 5:
-        saveGraph();
+        saveGraph( "graph.g" );
         break;
     case 6:
-        loadGraph();
+        loadGraph( "graph.g" );
         break;
     case 7:
         writeMatrix();

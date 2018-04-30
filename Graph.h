@@ -56,8 +56,10 @@ public:
     {
         return m_graphValues.size();
     }
-    void BFS( int startVertex )
+    std::vector< std::string > BFS( int startVertex )
     {
+        std::vector< std::string > order;
+        
         unsigned int n = m_graphValues.size();
         int visitedVertices[ n ];
         for( unsigned int i = 0; i < n; i++ )       //Zerujemy tablicê
@@ -69,7 +71,8 @@ public:
         while( !verticesQueue.empty() ){
             startVertex = verticesQueue.front();
             verticesQueue.pop();                        //usuwamy z kolejki wierzcho³ek odczytany
-            std::cout << m_graphValues[ startVertex ] << std::endl;
+            order.push_back( m_graphValues[ startVertex ] );      //Dodajemy wierzcholek do tablicy odwiedzonych
+            //std::cout << m_graphValues[ startVertex ] << std::endl;
             for( unsigned int i = 0; i < n; i++ ){
                 if( m_adjacencyMatrix[ startVertex ][ i ] == 1 && visitedVertices[ i ] == false ){     // jeœli sprawdzany wierzcho³ek jest po³¹czony z i-tym wierzcholkiem i i-ty wierzcho³ek nie by³ odwiedzony
                     verticesQueue.push( i );            // Umieszczamy s¹siaduj¹cy wierzcho³ek w kolejce
@@ -77,6 +80,7 @@ public:
                 }
             }
         }
+        return order;
     }
 };
 
