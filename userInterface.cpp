@@ -84,7 +84,10 @@ void UserInterface::searchGraph()
         system( "clear || cls" );
         return;
     }
-    m_graph.BFS( startVertex );
+    std::vector< std::string > test = m_graph.BFS( startVertex );
+    for( unsigned int i = 0; i < test.size(); i++ )
+        std::cout << test[ i ] << std::endl;
+    std::cout << std::endl;
 }
 
 void UserInterface::writeMatrix()
