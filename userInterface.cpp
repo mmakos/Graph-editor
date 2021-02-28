@@ -1,4 +1,5 @@
 #include <fstream>
+#include <string>
 #include "userInterface.h"
 
 #ifdef _WIN32
@@ -84,10 +85,7 @@ void UserInterface::searchGraph()
         system( "clear || cls" );
         return;
     }
-    std::vector< std::string > test = m_graph.BFS( startVertex );
-    for( unsigned int i = 0; i < test.size(); i++ )
-        std::cout << test[ i ] << std::endl;
-    std::cout << std::endl;
+    m_graph.BFS( startVertex );
 }
 
 void UserInterface::writeMatrix()
@@ -101,10 +99,10 @@ void UserInterface::writeMatrix()
     std::cout << std::endl;
 }
 
-void UserInterface::saveGraph( std::string name )
+void UserInterface::saveGraph()
 {
     std::fstream save;
-    save.open( name.c_str(), std::ios::out | std::ios::binary );
+    save.open( "graph.g", std::ios::out | std::ios::binary );
     if( !save.good() ){
         std::cout << "Nie udalo sie zapisac!" << std::flush;
         Sleep( 1500 );
@@ -125,10 +123,10 @@ void UserInterface::saveGraph( std::string name )
     save.close();
 }
 
-void UserInterface::loadGraph( std:: string name )
+void UserInterface::loadGraph()
 {
     std::fstream load;
-    load.open( name.c_str(), std::ios::in | std::ios::binary );
+    load.open( "graph.g", std::ios::in | std::ios::binary );
     if( !load.good() ){
         std::cout << "Nie znaleziono zapisanego grafu!" << std::flush;
         Sleep( 1500 );
@@ -148,9 +146,9 @@ void UserInterface::loadGraph( std:: string name )
     }
     m_graph.createValues( n );
     std::string temp;
-    getline( load, temp );
+    std::getline( load, temp );
     for( int i = 0; i < n; i++ ){
-        getline( load, temp );
+        std::getline( load, temp );
         m_graph.setValue( temp, i );
     }
     load.close();
@@ -194,10 +192,10 @@ bool UserInterface::userMenu()
         searchGraph();
         break;
     case 5:
-        saveGraph( "graph.g" );
+        saveGraph();
         break;
     case 6:
-        loadGraph( "graph.g" );
+        loadGraph();
         break;
     case 7:
         writeMatrix();
